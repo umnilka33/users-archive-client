@@ -17,7 +17,6 @@ export const alertSlice = createSlice({
         hideAlert: (state) => {
             state.alertText = '';
             state.alertStatus = undefined;
-            console.log('alert closed')
         },
     },
 });

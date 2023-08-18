@@ -18,8 +18,8 @@ export const UserCard = (props: UserCardProps) => {
     }
 
     return (
-        <Card sx={{ minWidth: '250px', height: '235px' }}>
-            <CardContent sx={{ backgroundColor: '#dff0f4' }}>
+        <Card sx={{ minWidth: '250px', maxHeight: '235px' }}>
+            <CardContent sx={{ backgroundColor: '#dff0f4', maxHeight: '235px' }}>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     {user.id}
                 </Typography>

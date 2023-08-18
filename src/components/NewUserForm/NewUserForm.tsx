@@ -74,7 +74,7 @@ export const NewUserForm = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
                 size="small"
-                type="text"
+                type="number"
                 variant="outlined"
                 required />
             <TextField

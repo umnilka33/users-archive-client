@@ -19,7 +19,6 @@ function* sagaCreateUser(action: PayloadAction<IUser>): Generator<Effect, void> 
         }
 
         const user = yield call(UserApi.createUser, userObject);
-        console.log('user', user);
         yield put(usersActions.addUser(user as IUserResponse))
         yield put(alertActions.showAlert({
             alertText: 'Пользователь успешно добавлен', 
@@ -39,7 +38,6 @@ function* sagaCreateUser(action: PayloadAction<IUser>): Generator<Effect, void> 
 function* sagaDeleteUser(action: PayloadAction<string>): Generator<Effect, void> {
     try {
         yield call(UserApi.deleteUser, action.payload)
-        console.log('user id', action.payload)
         yield put(usersActions.deleteUser(action.payload))
         yield put(alertActions.showAlert({
             alertText: 'Пользователь успешно удален', 
