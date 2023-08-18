@@ -1,4 +1,5 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, styled, TextField } from "@mui/material"
+import { matchIsValidTel, MuiTelInput } from "mui-tel-input";
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { IUserActionTypes } from "../../types/types";
@@ -15,10 +16,16 @@ export const NewUserForm = () => {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [patronymic, setPatronymic] = useState<string>('');
-    const [phone, setPhone] = useState<string>('');
+    // const [phone, setPhone] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [gender, setGender] = useState<string>('');
     const dispatch = useDispatch();
+    const [phone, setPhone] = useState('')
+
+    const handleChangePhone = (newPhone: any) => {
+        setPhone(newPhone)
+
+    }
     const handleChange = (event: SelectChangeEvent) => {
         setGender(event.target.value);
     };
@@ -69,13 +76,15 @@ export const NewUserForm = () => {
                 type="text"
                 variant="outlined"
                 required />
-            <TextField
+            <MuiTelInput
                 label="Телефон"
-                onChange={(e) => setPhone(e.target.value)}
                 value={phone}
                 size="small"
-                type="number"
-                variant="outlined"
+                error={!matchIsValidTel(phone)}
+                defaultCountry="RU"
+                onlyCountries={['RU']}
+                disableDropdown
+                onChange={handleChangePhone}
                 required />
             <TextField
                 label="Email"
