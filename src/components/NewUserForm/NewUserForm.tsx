@@ -16,15 +16,13 @@ export const NewUserForm = () => {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [patronymic, setPatronymic] = useState<string>('');
-    // const [phone, setPhone] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [gender, setGender] = useState<string>('');
     const dispatch = useDispatch();
     const [phone, setPhone] = useState('')
 
     const handleChangePhone = (newPhone: any) => {
-        setPhone(newPhone)
-
+        setPhone(newPhone);
     }
     const handleChange = (event: SelectChangeEvent) => {
         setGender(event.target.value);
