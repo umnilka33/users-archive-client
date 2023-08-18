@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, IconButton, styled, Tooltip, Typography } from "@mui/material"
+import { Card, CardActions, CardContent, IconButton, Tooltip, Typography } from "@mui/material"
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { IUser } from "../../types/types";
 

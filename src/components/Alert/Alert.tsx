@@ -1,6 +1,5 @@
-import { Alert, Card, CardActions, CardContent, IconButton, Snackbar, Stack, styled, Tooltip, Typography } from "@mui/material"
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { IAlertState, IUser } from "../../types/types";
+import { Alert, Snackbar } from "@mui/material"
+import { IAlertState } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { alertActions } from "../../redux/Alert/slices/alertSlice";
 
