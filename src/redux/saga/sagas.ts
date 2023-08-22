@@ -9,17 +9,17 @@ const delay = (time: number) => new Promise(resolve => setTimeout(resolve, time)
 
 function* sagaCreateUser(action: PayloadAction<IUser>): Generator<Effect, void> {
     try {
+        const user: IUserResponse = (yield call(UserApi.createUser, action.payload)) as IUserResponse;
         const userObject: IUser = {
-            firstname: action.payload.firstname,
-            lastname: action.payload.lastname,
-            patronymic: action.payload.patronymic,
-            phone: action.payload.phone,
-            email: action.payload.email,
-            gender: action.payload.gender,
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            patronymic: user.patronymic,
+            phone: user.phone,
+            email: user.email,
+            gender: user.gender,
         }
-
-        const user = yield call(UserApi.createUser, userObject);
-        yield put(usersActions.addUser(user as IUserResponse))
+        yield put(usersActions.addUser(userObject))
         yield put(alertActions.showAlert({
             alertText: 'Пользователь успешно добавлен', 
             alertStatus:'success'
@@ -33,8 +33,6 @@ function* sagaCreateUser(action: PayloadAction<IUser>): Generator<Effect, void> 
         }));
     }
 }
-
-
 function* sagaDeleteUser(action: PayloadAction<string>): Generator<Effect, void> {
     try {
         yield call(UserApi.deleteUser, action.payload)
@@ -53,7 +51,18 @@ function* sagaDeleteUser(action: PayloadAction<string>): Generator<Effect, void>
 function* sagaGetUsers(): Generator<Effect, void, IUser[]> {
     try {
         const users = yield call(UserApi.getUsers);
-        yield put(usersActions.setUsers(users));
+        const usersArray = users.map((user)=>{
+            return {
+                id: user.id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                patronymic: user.patronymic,
+                phone: user.phone,
+                email: user.email,
+                gender: user.gender,
+            }
+        });
+        yield put(usersActions.setUsers(usersArray));
     } catch (error) {
         yield put(alertActions.showAlert({
             alertText: `Не удалось загрузить данные: ${error}`, 
