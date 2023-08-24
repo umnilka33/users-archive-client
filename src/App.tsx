@@ -7,6 +7,7 @@ function App() {
 const dispatch = useDispatch()
   useEffect(()=>{
     dispatch({type: IUserActionTypes.GET_USERS})
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
   return (
     <div className="App">
