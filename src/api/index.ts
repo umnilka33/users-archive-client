@@ -9,14 +9,14 @@ const DecodeResponse = (data:Uint8Array) => {
 
 export class UserApi {
     static async createUser(user: Partial<IUser>):Promise<IUsersState[]> {
-        const res = await axios.post('http://localhost:3002/users/', user);
+        const res = await axios.post('http://192.168.201.20:2022/users/', user);
         return DecodeResponse(res.data);
     }
     static async deleteUser(id: string):Promise<void> {
-        await axios.delete(`http://localhost:3002/users/${id}`);
+        await axios.delete(`http://192.168.201.20:2022/users/${id}`);
     }
     static async getUsers():Promise<IUsersState[]> {
-        const res = await axios.get('http://localhost:3002/users/', {
+        const res = await axios.get('http://192.168.201.20:2022/users/', {
             headers: {'Content-Type': 'application/x-msgpack'},
             data: {}
         });
